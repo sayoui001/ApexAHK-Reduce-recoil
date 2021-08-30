@@ -78,7 +78,7 @@ Code:
 
 ## Hotfix
 If you want to use this script without hold left button you need to edit the script like this :
-
+```
 ~$*LButton::
 if (GetKeyState("RButton") || RapidMode) {   <<<< Delete this whole line
 	Sleep 5
@@ -101,3 +101,4 @@ if (GetKeyState("RButton") || RapidMode) {   <<<< Delete this whole line
 		} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
 }   <<<< Delete this whole line
 Return
+```
