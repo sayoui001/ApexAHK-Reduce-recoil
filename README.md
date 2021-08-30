@@ -69,7 +69,7 @@ Code:
 1. Download and install AHK from [here](https://www.autohotkey.com).
 2. Edit your <U>sens</U> and <U>zoomsens</U> in **settings.ini**
 3. Bind your secondary shoot key to 9 or any key ( Must match in NickAR.ahk )
-![Set here](https://imgur.com/a/hxwaVVn)
+![Set here](SecondaryFireButton.png)
 4. Run **NickAR.ahk as** admin.
 5. Run **AHKHider.ahk** as admin. ( Make sure u have hyde.dll and hyde64.dll in folder )
 6. Enjoy
