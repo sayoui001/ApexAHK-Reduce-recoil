@@ -47,7 +47,7 @@ Code:
 * Add scroll mouse to switch weapon
 * Fixed auto fire problem when you pressed 3 or G
 * Add Prowler pattern. ( I made by myself and still in testing, first 15 bullets is ok but after that maybe weird )
-* Add Wingman auto fire. ( If you don't like you can disable by delete the pattern of Wingman like this [ Wingman_Pattern := { Delete this } ] )
+* Add Wingman auto fire. ( If you don't like you can disable by delete the pattern of Wingman like this ` Wingman_Pattern := { Delete this } `
 
 **V 0.4c**
 * Fixed bug sometimes the script detect Wingman as Prowler.
