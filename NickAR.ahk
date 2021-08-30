@@ -383,11 +383,19 @@ Detect_Weapon() {
 		Global RapidMode := 0
 		Return DevotionTurbo_Weapon
 		}
+		If (Check_Weapon("TurbochargeArena")) {
+		Global RapidMode := 0
+		Return DevotionTurbo_Weapon
+		}
 	Global RapidMode := 0
 	Return Devotion_Weapon
 	}
 	Else If (Check_Weapon("Havoc")) {
 		If (Check_Weapon("Turbocharge")) {
+		Global RapidMode := 0
+		Return HavocTurbo_Weapon
+		}
+		If (Check_Weapon("TurbochargeArena")) {
 		Global RapidMode := 0
 		Return HavocTurbo_Weapon
 		}
