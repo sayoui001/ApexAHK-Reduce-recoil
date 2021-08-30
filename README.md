@@ -75,3 +75,29 @@ Code:
 4. Run **NickAR.ahk as** admin.
 5. Run **AHKHider.ahk** as admin. ( Make sure u have hyde.dll and hyde64.dll in folder )
 6. Enjoy
+
+## Hotfix
+If you want to use this script without hold left button you need to edit the script like this :
+
+~$*LButton::
+if (GetKeyState("RButton") || RapidMode) {   <<<< Delete this whole line
+	Sleep 5
+	Loop {
+		If (RapidMode) {
+		If A_Index < 3
+		Click
+		Else
+		Random, Rand, 1, 2
+		If(Rand = 1)
+		Click
+		Else
+		Send % Subshootkey
+		}
+		X := StrSplit(Active_Pattern[a_index],",")[1]
+		Y := StrSplit(Active_Pattern[a_index],",")[2]
+		T := StrSplit(Active_Pattern[a_index],",")[3]
+		DllCall("mouse_event", UInt, 0x01, UInt, Round(X * modIfier), UInt, Round(Y * modIfier))
+		Sleep T
+		} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
+}   <<<< Delete this whole line
+Return
