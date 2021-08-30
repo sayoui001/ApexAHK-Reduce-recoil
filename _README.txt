@@ -1,6 +1,6 @@
 Script made by Nick (sayoui001)
 
-Current version V 0.4b
+Current version V 0.5
 
 Know issue
 - This script is for 1920 x 1080 resolution only. (Will support other resolution in future)
