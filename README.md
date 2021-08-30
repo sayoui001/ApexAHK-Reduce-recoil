@@ -73,7 +73,7 @@ Code:
 3. Bind your secondary shoot key to 9 or any key ( Must match in NickAR.ahk )
 ![Set here](SecondaryFireButton.png)
 4. Run **NickAR.ahk as** admin.
-5. Run **AHKHider.ahk** as admin. ( Make sure u have hyde.dll and hyde64.dll in folder )
+5. Run **AHKHider.ahk** as admin. ( Make sure u have hyde.dll and hyde64.dll in folder , AHK Hider not included )
 6. Enjoy
 
 ## Hotfix
