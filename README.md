@@ -59,3 +59,17 @@ Code:
 * From now you must set your sens in settings.ini
 * Add Rampart's Minigun to script. ( Do we really need this ? ) You must scope in to use. Don't forget to press 1 or 2 again when you mounting the gun.
 * Script now support [Tientie (Vengefulcrop)](https://www.unknowncheats.me/forum/apex-legends/467406-method-generating-recoil-patterns-ahk-script-development-testing.html) reciol patterns generating method. ( You can see pattern example in file PatternExample.txt )
+
+## Future plan
+* Update all weapon pattern.
+* Improve performance of script. ( Make it cost less lag, more accurate weapon detect )
+* Support other resolutions.
+
+## Installation
+1. Download and install AHK from [here](https://www.autohotkey.com).
+2. Edit your <U>sens</U> and <U>zoomsens</U> in **settings.ini**
+3. Bind your secondary shoot key to 9 or any key ( Must match in NickAR.ahk )
+![Set here](https://imgur.com/a/hxwaVVn)
+4. Run **NickAR.ahk as** admin.
+5. Run **AHKHider.ahk** as admin. ( Make sure u have hyde.dll and hyde64.dll in folder )
+6. Enjoy
