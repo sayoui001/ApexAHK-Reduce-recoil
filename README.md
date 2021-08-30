@@ -23,13 +23,17 @@ Code:
 * Add Rampage pattern. ( Credit : filen )
 * Improve detection accurate. ( Still not 100% )
 * Add stop script when in mouse is showing menu. ( Will be bug sometimes )
+
 **V 0.3**
 * Update Alternator pattern.
 * Update Devotion pattern.
+
 **V 0.3b**
 * Fix script not working.
+
 **V 0.3c**
 * Change the weapon image. ( More accurate I think )
+
 **V 0.4**
 * Add auto fire for tap weapon ( G7 P2020 Hemlok ). To make auto fire work you must bind your secondary shoot key to 9.
 * Change the weapon image. ( More accurate I think )
@@ -38,15 +42,18 @@ Code:
 * Add grenade button. (If you press G then throw grenade you must press 1 or 2 again to detect weapon)
 * Update R99, RE45, Rampage and Turbocharge Devotion pattern. (Credit : bubleberry)
 * Add Rampage charged. (Credit : bubleberry) (You must press 1 or 2 again to detect weapon)
+
 **V 0.4b**
 * Add scroll mouse to switch weapon
 * Fixed auto fire problem when you pressed 3 or G
 * Add Prowler pattern. ( I made by myself and still in testing, first 15 bullets is ok but after that maybe weird )
 * Add Wingman auto fire. ( If you don't like you can disable by delete the pattern of Wingman like this [ Wingman_Pattern := { Delete this } ] )
+
 **V 0.4c**
 * Fixed bug sometimes the script detect Wingman as Prowler.
 * Update R99 pattern. ( Slightly better )
 * Delete Repeater form script.
+
 **V 0.5**
 * Update R99, R301, Volt, Lstar, Flatline and HavocTurboCharge patterns.
 * From now you must set your sens in settings.ini
