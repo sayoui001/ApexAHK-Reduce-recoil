@@ -1,0 +1,4 @@
+FileRead, GunNamePattern, %A_ScriptDir%\Pattern\GunName.txt
+GunName_Pattern := []
+Loop, Parse, GunNamePattern, `n, `, , `" ,`r 
+	GunName_Pattern.Insert(A_LoopField)
