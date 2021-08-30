@@ -25,7 +25,7 @@ GoSub, IniRead
 
 ; Script Version V 0.5
 
-; ---VarSection---
+; ----VarSection----
 
 Global Current_Weapon := Default_Weapon
 Global Active_Pattern := No_Pattern
