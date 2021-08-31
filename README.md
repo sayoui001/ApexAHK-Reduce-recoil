@@ -79,7 +79,7 @@ Code:
 6. Enjoy
 
 ## Hotfix
-If you want to use this script without hold left button you need to edit the script like this :
+If you want to use this script without hold right button you need to edit the script like this :
 ```
 ~$*LButton::
 if (GetKeyState("RButton") || RapidMode) {   <<<< Delete this whole line
