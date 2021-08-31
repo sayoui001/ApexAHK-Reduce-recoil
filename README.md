@@ -68,7 +68,8 @@ Code:
 * Support other resolutions.
 
 ## Installation
-0. You must have these files otherwise the script won't work properly. ![here](ImportantFiles.PNG)
+0. You must have these files otherwise the script won't work properly. 
+![here](ImportantFiles.PNG)
 1. Download and install AHK from [here](https://www.autohotkey.com).
 2. Edit your <U>sens</U> and <U>zoomsens</U> in **settings.ini**
 3. Bind your secondary shoot key to 9 or any key ( Must match in NickAR.ahk )
