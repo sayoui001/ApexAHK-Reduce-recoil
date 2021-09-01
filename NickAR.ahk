@@ -23,7 +23,7 @@ If not A_IsAdmin {
 
 GoSub, IniRead
 
-; Script Version V 0.5
+; Script Version V 0.6
 
 ; ----VarSection----
 
