@@ -62,6 +62,10 @@ Code:
 * Add Rampart's Minigun to script. ( Do we really need this ? ) You must scope in to use. Don't forget to press 1 or 2 again when you mounting the gun.
 * Script now support [Tientie (Vengefulcrop)](https://www.unknowncheats.me/forum/apex-legends/467406-method-generating-recoil-patterns-ahk-script-development-testing.html) reciol patterns generating method. ( You can see pattern example in file PatternExample.txt )
 
+**V 0.6**
+* Move pattern to txt files.
+* Update Havoc pattern.
+
 ## Future plan
 * Update all weapon pattern.
 * Improve performance of script. ( Make it cost less lag, more accurate weapon detect )
