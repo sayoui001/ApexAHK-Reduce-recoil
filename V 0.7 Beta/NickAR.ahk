@@ -241,7 +241,7 @@ Loop {
 
 Check_Weapon(Weapon_Pic) {
     loop, 3 {
-        ImageSearch, FoundX, FoundY, 1520, 1000, 1819, 1057,*50 %A_ScriptDir%\Image\%Weapon_pic%.png
+        ImageSearch, FoundX, FoundY, 1520, 1000, 1824, 1057,*50 %A_ScriptDir%\Image\%Weapon_pic%.png
 		If (ErrorLevel != 0) {
 		Return False
         }
