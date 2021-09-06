@@ -82,133 +82,14 @@ Hotkey, ~$*%bind_grenade%, key_g
 
 No_Pattern := {}
 
-; ---------- Light Ammo Pattern ----------
-
-; --- R301 ---
-FileRead, R301Pattern, %A_ScriptDir%\Pattern\R301.txt
-R301_Pattern := []
-Loop, Parse, R301Pattern, `n, `, , `" ,`r 
-	R301_Pattern.Insert(A_LoopField)
-
-; --- R99 ---
-FileRead, R99Pattern, %A_ScriptDir%\Pattern\R99.txt
-R99_Pattern := []
-Loop, Parse, R99Pattern, `n, `, , `" ,`r 
-	R99_Pattern.Insert(A_LoopField)
-
-; --- Alternator ---
-FileRead, AlternatorPattern, %A_ScriptDir%\Pattern\Alternator.txt
-Alternator_Pattern := []
-Loop, Parse, AlternatorPattern, `n, `, , `" ,`r 
-	Alternator_Pattern.Insert(A_LoopField)
-
-; --- RE45 ---
-FileRead, RE45Pattern, %A_ScriptDir%\Pattern\RE45.txt
-RE45_Pattern := []
-Loop, Parse, RE45Pattern, `n, `, , `" ,`r 
-	RE45_Pattern.Insert(A_LoopField)
-
-; --- P2020 ---
-FileRead, P2020Pattern, %A_ScriptDir%\Pattern\P2020.txt
-P2020_Pattern := []
-Loop, Parse, P2020Pattern, `n, `, , `" ,`r 
-	P2020_Pattern.Insert(A_LoopField)
-
-; --- G7 ---
-FileRead, G7Pattern, %A_ScriptDir%\Pattern\G7.txt
-G7_Pattern := []
-Loop, Parse, G7Pattern, `n, `, , `" ,`r 
-	G7_Pattern.Insert(A_LoopField)
-
-; ---------- Heavy Ammo Weapon ----------
-
-; --- Flatline ---
-FileRead, FlatlinePattern, %A_ScriptDir%\Pattern\Flatline.txt
-Flatline_Pattern := []
-Loop, Parse, FlatlinePattern, `n, `, , `" ,`r 
-	Flatline_Pattern.Insert(A_LoopField)
-
-; --- Rampage ---
-FileRead, RampagePattern, %A_ScriptDir%\Pattern\Rampage.txt
-Rampage_Pattern := []
-Loop, Parse, RampagePattern, `n, `, , `" ,`r 
-	Rampage_Pattern.Insert(A_LoopField)
-
-; --- RampageAmp ---
-FileRead, RampageAmpPattern, %A_ScriptDir%\Pattern\RampageAmp.txt
-RampageAmp_Pattern := []
-Loop, Parse, RampageAmpPattern, `n, `, , `" ,`r 
-	RampageAmp_Pattern.Insert(A_LoopField)
- 
-; --- Spitfire ---
-FileRead, SpitfirePattern, %A_ScriptDir%\Pattern\Spitfire.txt
-Spitfire_Pattern := []
-Loop, Parse, SpitfirePattern, `n, `, , `" ,`r 
-	Spitfire_Pattern.Insert(A_LoopField)
-
-; --- Hemlok ---
-FileRead, HemlokPattern, %A_ScriptDir%\Pattern\Hemlok.txt
-Hemlok_Pattern := []
-Loop, Parse, HemlokPattern, `n, `, , `" ,`r 
-	Hemlok_Pattern.Insert(A_LoopField)
-
-; --- Prowler ---
-FileRead, ProwlerPattern, %A_ScriptDir%\Pattern\Prowler.txt
-Prowler_Pattern := []
-Loop, Parse, ProwlerPattern, `n, `, , `" ,`r 
-	Prowler_Pattern.Insert(A_LoopField)
-
-; --- Wingman ---
-FileRead, WingmanPattern, %A_ScriptDir%\Pattern\Wingman.txt
-Wingman_Pattern := []
-Loop, Parse, WingmanPattern, `n, `, , `" ,`r 
-	Wingman_Pattern.Insert(A_LoopField)
-
-; ---------- Energy Ammo Weapon ----------
-
-; Volt
-FileRead, VoltPattern, %A_ScriptDir%\Pattern\Volt.txt
-Volt_Pattern := []
-Loop, Parse, VoltPattern, `n, `, , `" ,`r 
-	Volt_Pattern.Insert(A_LoopField)
-
-; Lstar
-FileRead, LstarPattern, %A_ScriptDir%\Pattern\Lstar.txt
-Lstar_Pattern := []
-Loop, Parse, LstarPattern, `n, `, , `" ,`r 
-	Lstar_Pattern.Insert(A_LoopField)
-
-; Havoc
-FileRead, HavocPattern, %A_ScriptDir%\Pattern\Havoc.txt
-Havoc_Pattern := []
-Loop, Parse, HavocPattern, `n, `, , `" ,`r 
-	Havoc_Pattern.Insert(A_LoopField)
-
-; HavocTurbo
-FileRead, HavocTurboPattern, %A_ScriptDir%\Pattern\HavocTurbo.txt
-HavocTurbo_Pattern := []
-Loop, Parse, HavocTurboPattern, `n, `, , `" ,`r 
-	HavocTurbo_Pattern.Insert(A_LoopField)
-
-; Devotion
-FileRead, DevotionPattern, %A_ScriptDir%\Pattern\Devotion.txt
-Devotion_Pattern := []
-Loop, Parse, DevotionPattern, `n, `, , `" ,`r 
-	Devotion_Pattern.Insert(A_LoopField)
-
-; DevotionTurbo
-FileRead, DevotionTurboPattern, %A_ScriptDir%\Pattern\DevotionTurbo.txt
-DevotionTurbo_Pattern := []
-Loop, Parse, DevotionTurboPattern, `n, `, , `" ,`r 
-	DevotionTurbo_Pattern.Insert(A_LoopField)
-
-; ---------- SPECIAL WEAPON ----------
-
-; --- MiniGun ---
-FileRead, MiniGunPattern, %A_ScriptDir%\Pattern\MiniGun.txt
-MiniGun_Pattern := []
-Loop, Parse, MiniGunPattern, `n, `, , `" ,`r 
-	MiniGun_Pattern.Insert(A_LoopField)
+Loop Files, %A_ScriptDir%\Pattern\*.txt, R
+{
+	gunName := SubStr(A_LoopFileName, 1, StrLen(A_LoopFileName) - 4)
+	FileRead, %gunName%Pattern, %A_ScriptDir%\Pattern\%A_LoopFileName%
+	%gunName%_Pattern := []
+	Loop, Parse, %gunName%Pattern, `n, `, , `" ,`r 
+		%gunName%_Pattern.Insert(A_LoopField)
+}
 
 ; ---Var Section 2 (Don't edit this)---
 
@@ -241,9 +122,10 @@ Loop {
 
 Check_Weapon(Weapon_Pic) {
     loop, 3 {
-        ImageSearch, FoundX, FoundY, 1520, 1000, 1824, 1057,*50 %A_ScriptDir%\Image\%Weapon_pic%.png
+		global lang
+        ImageSearch, FoundX, FoundY, 1520, 1000, 1824, 1057,*50 %A_ScriptDir%\Image\%lang%\%Weapon_pic%.png
 		If (ErrorLevel != 0) {
-		Return False
+			Return False
         }
     }
     Return True
@@ -408,11 +290,13 @@ IniRead:
     {
         MsgBox, Couldn't find settings.ini. I'll create one for you.
         IniWrite, "5.0", settings.ini, mouse settings, sens
-        IniWrite, "1.0"`n, settings.ini, mouse settings, zoom_sens
+        IniWrite, "1.0", settings.ini, mouse settings, zoom_sens
+		IniWrite, "EN"`n, settings.ini, i18n settings, lang
 	}
 	Else {
         IniRead, sens, settings.ini, mouse settings, sens
         IniRead, zoom_sens, settings.ini, mouse settings, zoom_sens
+		IniRead, lang, settings.ini, i18n settings, lang
 	}
 Return
 
