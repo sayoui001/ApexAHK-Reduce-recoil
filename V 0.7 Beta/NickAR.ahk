@@ -15,7 +15,6 @@ SetDefaultMouseSpeed, 0
 SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
-
 If not A_IsAdmin {
     Run *RunAs "%A_ScriptFullPath%"
     ExitApp
@@ -23,7 +22,7 @@ If not A_IsAdmin {
 
 GoSub, IniRead
 
-; Script Version V 0.7 Beta
+; Script Version V 0.7 Beta 2
 
 ; ----VarSection----
 
@@ -260,7 +259,7 @@ Return
 
 #If mice = 0
 ~$*LButton::
-if (GetKeyState("RButton") || RapidMode) { 
+;~ if (GetKeyState("RButton") || RapidMode) { 
 	Sleep 5
 	Loop {
 		If (RapidMode) {
@@ -279,7 +278,7 @@ if (GetKeyState("RButton") || RapidMode) {
 		DllCall("mouse_event", UInt, 0x01, UInt, Round(X * modIfier), UInt, Round(Y * modIfier))
 		Sleep T
 		} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
-}
+;~ }
 Return
 #If
 
@@ -291,12 +290,12 @@ IniRead:
         MsgBox, Couldn't find settings.ini. I'll create one for you.
         IniWrite, "5.0", settings.ini, mouse settings, sens
         IniWrite, "1.0", settings.ini, mouse settings, zoom_sens
-		IniWrite, "EN"`n, settings.ini, i18n settings, lang
+		IniWrite, "EN"`n, settings.ini, language settings, lang
 	}
 	Else {
         IniRead, sens, settings.ini, mouse settings, sens
         IniRead, zoom_sens, settings.ini, mouse settings, zoom_sens
-		IniRead, lang, settings.ini, i18n settings, lang
+		IniRead, lang, settings.ini, language settings, lang
 	}
 Return
 
