@@ -22,7 +22,7 @@ If not A_IsAdmin {
 
 GoSub, IniRead
 
-; Script Version V 0.7 Beta 2
+; Script Version V 0.7 Beta 3
 
 ; ----VarSection----
 
@@ -94,7 +94,7 @@ Loop Files, %A_ScriptDir%\Pattern\*.txt, R
 
 Zoom := 1.0/zoom_sens 
 Active_Pattern := No_Pattern
-ModIfier := 3.40/sens*Zoom
+ModIfier := 4/sens*Zoom
 
 ; ---Suspend the script when mouse is showing---
 
@@ -259,7 +259,7 @@ Return
 
 #If mice = 0
 ~$*LButton::
-;~ if (GetKeyState("RButton") || RapidMode) { 
+if (GetKeyState("RButton") || RapidMode) { 
 	Sleep 5
 	Loop {
 		If (RapidMode) {
@@ -278,7 +278,7 @@ Return
 		DllCall("mouse_event", UInt, 0x01, UInt, Round(X * modIfier), UInt, Round(Y * modIfier))
 		Sleep T
 		} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
-;~ }
+}
 Return
 #If
 
