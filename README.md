@@ -66,6 +66,24 @@ Code:
 * Move pattern to txt files.
 * Update Havoc pattern.
 
+**V 0.7 Beta**
+* Change pictures that use for detect weapons from weapons part to weapons name.
+* The weapon detect function should work better.
+
+**V 0.7 Beta 2**
+* Add RU language support. ( Change language in setting.ini )
+* Short some code.
+* All of 0.7 Beta 2 update was a contribute from VerTox
+
+**V 0.7.3**
+* Update R99 , RE45 , Volt , Rampage , Spitfire and Alternator pattern.
+* Change modifier from 3.4 to 4 for easier port from Tientie (Vengefulcrop).
+* Add DE language support. ( Credit : Cyde )
+
+**V 0.8**
+* Add CAR SMG pattern.
+* Disable auto fire G7 and Wingman as default.
+
 ## Future plan
 * Update all weapon pattern.
 * Improve performance of script. ( Make it cost less lag, more accurate weapon detect )
