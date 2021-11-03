@@ -81,7 +81,7 @@ Code:
 * Add DE language support. ( Credit : Cyde )
 
 **V 0.8**
-* Add CAR SMG pattern.
+* Add CAR SMG pattern. ( Only work for EN now )
 * Disable auto fire G7 and Wingman as default.
 
 ## Future plan
