@@ -13,7 +13,7 @@ if not A_IsAdmin
 Gosub, IniRead
 
 ; global variable
-script_version := "Edited V 1.0"
+script_version := "Modified V 1.1"
 
 ; Convert sens to sider format
 sider_sen := sens * 10
@@ -23,7 +23,7 @@ SetFormat, float, 0.1
 Gui, Font, S30 CDefault Bold, Verdana
 Gui, Add, Text, x71 y-1 w330 h50 , Apex-NoRecoil
 Gui, Font, ,
-Gui, Add, Text, x208 y49 w60 h20 , %script_version%
+Gui, Add, Text, x204 y49 w70 h20 , %script_version%
 Gui, Add, GroupBox, x11 y69 w450 h180 , Settings
 Gui, Font, S13 Bold, 
 Gui, Add, Text, x162 y89 w50 h30 , sens:
@@ -41,20 +41,23 @@ if (ads_only == "1") {
 Gui, Add, Text, x112 y209 w120 h30 , resolution:
 Gui, Font, S10, 
 if (resolution == "3840x2160") {
-    Gui, Add, DropDownList, x232 y209 vresolution, 1080x1920|2560x1440|3840x2160||
+    Gui, Add, DropDownList, x232 y209 vresolution, 1600x900|1920x1080|2560x1440|3840x2160||
 } else if (resolution == "2560x1440") {
-    Gui, Add, DropDownList, x232 y209 vresolution, 1080x1920|2560x1440||3840x2160|
+    Gui, Add, DropDownList, x232 y209 vresolution, 1600x900|1920x1080|2560x1440||3840x2160|
+} else if (resolution == "1600x900") {
+    Gui, Add, DropDownList, x232 y209 vresolution, 1600x900||1920x1080|2560x1440|3840x2160|
 } else {
-    Gui, Add, DropDownList, x232 y209 vresolution, 1080x1920||3840x2160|2560x1440
+    Gui, Add, DropDownList, x232 y209 vresolution, 1600x900|1920x1080||2560x1440|3840x2160
 } 
 Gui, Font, S18 Bold, 
 Gui, Add, Button, x142 y259 w190 h40 gbtSave, Save and Run!
 Gui, Font, , 
-Gui, Add, Link, x158 y307 w160 h18 , <a href="https://github.com/mgsweet/Apex-NoRecoil-2021">mgsweet/Apex-NoRecoil-2021</a>
+Gui, Add, Link, x128 y307 w400 h18 , Original GitHub : <a href="https://github.com/mgsweet/Apex-NoRecoil-2021">mgsweet/Apex-NoRecoil-2021</a>    
+Gui, Add, Link, x124 y327 w400 h18 , Modified Thread : <a href="https://www.unknowncheats.me/forum/apex-legends/466312-ahk-reduce-recoil-script-auto-detect-weapon.html">sayoui001 on UnknownCheats</a>
 ActiveMonitorInfo(X, Y, Width, Height)
 xPos := Width / 2 - 477 / 2
 yPos := Height / 2 - 335 / 2
-Gui, Show, x%xPos% y%yPos% h335 w477, Apex NoRecoil %script_version%
+Gui, Show, x%xPos% y%yPos% h355 w477, Apex NoRecoil %script_version%
 Return
 
 Slide:
