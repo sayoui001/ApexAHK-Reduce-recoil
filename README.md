@@ -1,4 +1,5 @@
 # ApexAHK-Reduce-recoil
+##For education purpose
 I'm making AHK script with auto detect weapon function. This script work fine but have some issue.
 I think I would share this script so that everyone can help to improve this script.
 I implement from [Updated [Apex Legends NoRecoil Script] - PART 2](https://www.unknowncheats.me/forum/apex-legends/328576-updated-apex-legends-norecoil-script-2-a.html)  and some GitHub ( GitHub link removed because it break the UC rule )
