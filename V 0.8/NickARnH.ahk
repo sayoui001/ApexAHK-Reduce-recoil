@@ -63,8 +63,8 @@ Global RapidMode := 0
 
 bind_1 = 1
 bind_2 = 2
-; bind_1B = WheelDown
-; bind_2B = WheelUp
+bind_1B = WheelDown
+bind_2B = WheelUp
 bind_Ult = z
 bind_run = 3
 bind_grenade = g 
@@ -74,7 +74,7 @@ Subshootkey = 9 ; Bind to your secondary fire button.
 
 Hotkey, ~$*%bind_1%, key_1
 Hotkey, ~$*%bind_2%, key_2
-; Hotkey, ~$*%bind_1B%, key_1B
+; Hotkey, ~$*%bind_1B%, key_1B 
 ; Hotkey, ~$*%bind_2B%, key_2B
 Hotkey, ~$*%bind_Ult%, key_Ult
 Hotkey, ~$*%bind_run%, key_3
@@ -268,26 +268,24 @@ Return
 
 #If mice = 0
 ~$*LButton::
-if (GetKeyState("RButton") || RapidMode) { 
-	Sleep 5
-	Loop {
-		If (RapidMode) {
-		If A_Index < 3
-		Click
-		Else
-		Random, Rand, 1, 2
-		If(Rand = 1)
-		Click
-		Else
-		Send % Subshootkey
-		}
-		X := StrSplit(Active_Pattern[a_index],",")[1]
-		Y := StrSplit(Active_Pattern[a_index],",")[2]
-		T := StrSplit(Active_Pattern[a_index],",")[3]
-		DllCall("mouse_event", UInt, 0x01, UInt, Round(X * modIfier), UInt, Round(Y * modIfier))
-		Sleep T
-		} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
-}
+Sleep 5
+Loop {
+	If (RapidMode) {
+	If A_Index < 3
+	Click
+	Else
+	Random, Rand, 1, 2
+	If(Rand = 1)
+	Click
+	Else
+	Send % Subshootkey
+	}
+	X := StrSplit(Active_Pattern[a_index],",")[1]
+	Y := StrSplit(Active_Pattern[a_index],",")[2]
+	T := StrSplit(Active_Pattern[a_index],",")[3]
+	DllCall("mouse_event", UInt, 0x01, UInt, Round(X * modIfier), UInt, Round(Y * modIfier))
+	Sleep T
+	} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
 Return
 #If
 
