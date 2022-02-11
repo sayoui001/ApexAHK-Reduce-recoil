@@ -87,6 +87,13 @@ Code:
 * Add CAR SMG pattern. ( Only work for EN now )
 * Disable auto fire G7 and Wingman as default.
 
+**ReWriteV1**
+* Change Alternator and Volt to SS12 ammo type.
+* Built-in AHK hider. ( Stolen from mgsweet )
+* Tweak detection method. ( It should be faster )
+* Fixed Devotion Turbocharge and Havoc Turbocharge not detect.
+* This version support only 1920x1080 resolution.
+
 ## Future plan
 * Update all weapon pattern.
 * Improve performance of script. ( Make it cost less lag, more accurate weapon detect )
@@ -103,29 +110,4 @@ Code:
 5. Run **AHKHider.ahk** as admin. ( Make sure u have hyde.dll and hyde64.dll in folder , AHK Hider not included )
 6. Enjoy
 
-## Hotfix
-If you want to use this script without hold right button you need to edit the script like this :
-```
-~$*LButton::
-if (GetKeyState("RButton") || RapidMode) {   <<<< Delete this whole line
-	Sleep 5
-	Loop {
-		If (RapidMode) {
-		If A_Index < 3
-		Click
-		Else
-		Random, Rand, 1, 2
-		If(Rand = 1)
-		Click
-		Else
-		Send % Subshootkey
-		}
-		X := StrSplit(Active_Pattern[a_index],",")[1]
-		Y := StrSplit(Active_Pattern[a_index],",")[2]
-		T := StrSplit(Active_Pattern[a_index],",")[3]
-		DllCall("mouse_event", UInt, 0x01, UInt, Round(X * modIfier), UInt, Round(Y * modIfier))
-		Sleep T
-		} until !GetKeyState("LButton","P") || a_index > Active_Pattern.maxindex()
-}   <<<< Delete this whole line
-Return
-```
+
