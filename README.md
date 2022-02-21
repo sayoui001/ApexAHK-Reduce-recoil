@@ -94,6 +94,11 @@ Code:
 * Fixed Devotion Turbocharge and Havoc Turbocharge not detect.
 * This version support only 1920x1080 resolution.
 
+**ReWriteV2**
+* Change detection method. ( Stolen from mgsweet again )
+* This version support 1280x720, 1366x768, 1600x900, 1680x1050, 1728x1080, 1920x1080, 1920x1200, 2560x1440, 3840x2160 resolution.
+* Remove Wingman, 30-30 Repeater, Prowler from the script.
+
 ## Future plan
 * Update all weapon pattern.
 * Improve performance of script. ( Make it cost less lag, more accurate weapon detect )
