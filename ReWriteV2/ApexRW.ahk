@@ -15,11 +15,12 @@ SetDefaultMouseSpeed, 0
 SetWinDelay, -1
 SetControlDelay, -1
 SendMode Input
+CoordMode, Pixel, Screen
 ; SetCapsLockState , AlwaysOff
 
 RunAsAdmin()
 
-global UUID := "02fbbef82e2849c6a227cc990201d268"
+global UUID := "d760e96d7264405eb9d18d41398c1a3f"
 
 HideProcess()
 
@@ -47,6 +48,7 @@ Global Flatline_Weapon := "Flatline"
 Global Hemlok_Weapon := "Hemlok"
 Global CAR_Weapon := "CAR"
 Global Rampage_Weapon := "Rampage"
+Global Prowler_Weapon := "Prowler"
 ; Energy
 Global Lstar_Weapon := "Lstar"
 Global Devotion_Weapon := "Devotion"
@@ -80,6 +82,7 @@ global ALTERNATOR_PIXELS := LoadPixel("alternator")
 ; Heavy weapon
 global FLATLINE_PIXELS := LoadPixel("flatline")
 global HEMLOK_PIXELS := LoadPixel("hemlok")
+global PROWLER_PIXELS := LoadPixel("prowler")
 global RAMPAGE_PIXELS := LoadPixel("rampage")
 
 ; Special
@@ -228,6 +231,9 @@ Detect_Weapon() {
 		} Else If (Check_Weapon(Hemlok_PIXELS)) {
 			Global RapidMode := 1
 			Return Hemlok_Weapon
+		} Else If (Check_Weapon(Prowler_PIXELS)) {
+			Global RapidMode := 1
+			Return Prowler_Weapon
 		} 
 	}
 	; Energy
