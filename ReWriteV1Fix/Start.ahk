@@ -11,7 +11,7 @@ RunAsAdmin()
 Gosub, IniRead
 
 ; global variable
-script_version := "ReWrite V 2"
+script_version := "ReWrite V 1 Fix"
 
 ; Convert sens to sider format
 sider_sen := sens * 10
@@ -31,27 +31,7 @@ if (ads_only == "1") {
 } else {
     Gui, Add, CheckBox, x182 y129 w110 h30 vads_only, ads_only
 }
-Gui, Add, Text, x122 y169 w169 h30 , resolution:
-Gui, Font, S10, 
-if (resolution == "3840x2160") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900|1680x1050|1728x1080|1920x1080|1920x1690|2560x1440|3840x2160||
-} else if (resolution == "2560x1440") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900|1680x1050|1728x1080|1920x1080|1920x1690|2560x1440||3840x2160|
-} else if (resolution == "1920x1690") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900|1680x1050|1728x1080|1920x1080|1920x1690||2560x1440|3840x2160|
-} else if (resolution == "1728x1080") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900|1680x1050|1728x1080||1920x1080|1920x1690|2560x1440|3840x2160|
-} else if (resolution == "1680x1050") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900|1680x1050||1728x1080|1920x1080|1920x1690|2560x1440|3840x2160|
-} else if (resolution == "1600x900") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900||1680x1050|1728x1080|1920x1080|1920x1690|2560x1440|3840x2160|
-} else if (resolution == "1366x768") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768||1600x900|1600x1050|1728x1080|1920x1080|1920x1690|2560x1440|3840x2160|
-} else if (resolution == "1280x720") {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720||1366x768|1600x900|1600x1050|1728x1080|1920x1080|1920x1690|2560x1440|3840x2160|
-} else {
-    Gui, Add, DropDownList, x222 y169 vresolution, 1280x720|1366x768|1600x900|1680x1050|1728x1080|1920x1080||1920x1690|2560x1440|3840x2160|
-} 
+
 Gui, Font, S18 Bold, 
 Gui, Add, Button, x142 y224 w190 h40 gbtSave, Save and Run!
 Gui, Font, , 
@@ -79,7 +59,6 @@ IniRead:
 IfNotExist, settings.ini 
 {
     MsgBox, Couldn't find settings.ini. I'll create one for you.
-    IniWrite, "1080x1920"`n, settings.ini, screen settings, resolution
     IniWrite, "5.0", settings.ini, mouse settings, sens
     IniWrite, "1.0", settings.ini, mouse settings, zoom_sens
     IniWrite, "1"`n, settings.ini, mouse settings, ads_only
@@ -88,7 +67,6 @@ IfNotExist, settings.ini
     }
 } 
 Else {
-    IniRead, resolution, settings.ini, screen settings, resolution
     IniRead, sens, settings.ini, mouse settings, sens
     IniRead, zoom_sens, settings.ini, mouse settings, zoom_sens
     IniRead, ads_only, settings.ini, mouse settings, ads_only
@@ -97,7 +75,6 @@ return
 
 btSave:
     Gui, submit
-    IniWrite, "%resolution%", settings.ini, screen settings, resolution
     IniWrite, "%sens%", settings.ini, mouse settings, sens
     IniWrite, "%ads_only%", settings.ini, mouse settings, ads_only
     if (A_ScriptName == "Start.ahk") {

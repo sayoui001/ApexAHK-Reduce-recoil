@@ -20,7 +20,7 @@ CoordMode, Pixel, Screen
 
 RunAsAdmin()
 
-global UUID := "d760e96d7264405eb9d18d41398c1a3f"
+Global UUID := "ad4f6c10f5ab4f7a9e75d0890fc10b13"
 
 HideProcess()
 
@@ -28,7 +28,7 @@ HideProcess()
 
 GoSub, IniRead
 
-; Script version ReWrite V 2
+; Script version ReWrite V 2 S13 Update
 
 ; Variable section
 Global Current_Weapon := Default_Weapon
@@ -49,6 +49,7 @@ Global Hemlok_Weapon := "Hemlok"
 Global CAR_Weapon := "CAR"
 Global Rampage_Weapon := "Rampage"
 Global Prowler_Weapon := "Prowler"
+Global Spitfire_Weapon := "Spitfire"
 ; Energy
 Global Lstar_Weapon := "Lstar"
 Global Devotion_Weapon := "Devotion"
@@ -57,53 +58,53 @@ Global Havoc_Weapon := "Havoc"
 Global HavocTurbo_Weapon := "HavocTurbo"
 ; Supplydrop
 Global Volt_Weapon := "Volt"
-Global Spitfire_Weapon := "Spitfire"
+
 
 ; x, y pos for weapon1 and weapon 2
-global WEAPON_1_PIXELS = LoadPixel("weapon1")
-global WEAPON_2_PIXELS = LoadPixel("weapon2")
+Global WEAPON_1_PIXELS = LoadPixel("weapon1")
+Global WEAPON_2_PIXELS = LoadPixel("weapon2")
 
 ; Ammo type color
-global Light_Weapon = 0x2D547D
-global Heavy_Weapon = 0x596B38
-global Energy_Weapon = 0x286E5A
-global Supplydrop_Weapon = 0x3701B2 ; Normal
-;global Supplydrop_Weapon = 0x714AB2 ; Protanopia
-;global Supplydrop_Weapon = 0x1920B2 ; Deuteranopia
-;global Supplydrop_Weapon = 0x312E90 ; Tritanopia
+Global Light_Weapon = 0x2D547D
+Global Heavy_Weapon = 0x596B38 
+Global Energy_Weapon = 0x286E5A
+Global Supplydrop_Weapon = 0x3701B2 ; Normal
+;Global Supplydrop_Weapon = 0x714AB2 ; Protanopia
+;Global Supplydrop_Weapon = 0x1920B2 ; Deuteranopia
+;Global Supplydrop_Weapon = 0x312E90 ; Tritanopia
 
 ; Light weapon
-global R99_PIXELS := LoadPixel("r99")
-global R301_PIXELS := LoadPixel("r301")
-global RE45_PIXELS := LoadPixel("re45")
-global P2020_PIXELS := LoadPixel("p2020")
-global ALTERNATOR_PIXELS := LoadPixel("alternator")
+Global R99_PIXELS := LoadPixel("r99")
+Global R301_PIXELS := LoadPixel("r301")
+Global RE45_PIXELS := LoadPixel("re45")
+Global P2020_PIXELS := LoadPixel("p2020")
+Global ALTERNATOR_PIXELS := LoadPixel("alternator")
 
 ; Heavy weapon
-global FLATLINE_PIXELS := LoadPixel("flatline")
-global HEMLOK_PIXELS := LoadPixel("hemlok")
-global PROWLER_PIXELS := LoadPixel("prowler")
-global RAMPAGE_PIXELS := LoadPixel("rampage")
+Global FLATLINE_PIXELS := LoadPixel("flatline")
+Global HEMLOK_PIXELS := LoadPixel("hemlok")
+Global PROWLER_PIXELS := LoadPixel("prowler")
+Global RAMPAGE_PIXELS := LoadPixel("rampage")
+Global SPITFIRE_PIXELS := LoadPixel("spitfire")
 
 ; Special
-global CAR_PIXELS := LoadPixel("car")
+Global CAR_PIXELS := LoadPixel("car")
 
 ; Energy weapon
-global LSTAR_PIXELS := LoadPixel("lstar")
-global DEVOTION_PIXELS := LoadPixel("devotion")
-global HAVOC_PIXELS := LoadPixel("havoc")
+Global LSTAR_PIXELS := LoadPixel("lstar")
+Global DEVOTION_PIXELS := LoadPixel("devotion")
+Global HAVOC_PIXELS := LoadPixel("havoc")
 
-; sSupplydrop weapon
-global SPITFIRE_PIXELS := LoadPixel("spitfire")
-global VOLT_PIXELS := LoadPixel("volt")
+; Supplydrop weapon
+Global VOLT_PIXELS := LoadPixel("volt")
 
 ; Turbocharger
-global HAVOC_TURBOCHARGER_PIXELS := LoadPixel("havoc_turbocharger")
-global DEVOTION_TURBOCHARGER_PIXELS := LoadPixel("devotion_turbocharger")
+Global HAVOC_TURBOCHARGER_PIXELS := LoadPixel("havoc_turbocharger")
+Global DEVOTION_TURBOCHARGER_PIXELS := LoadPixel("devotion_turbocharger")
 
-; each player can hold 2 weapons
+; Weapon pixel load
 LoadPixel(name) {
-    global resolution
+    Global resolution
     IniRead, weapon_pixel_str, %A_ScriptDir%\resolution\%resolution%.ini, pixels, %name%
     weapon_num_pixels := []
     Loop, Parse, weapon_pixel_str, `,
@@ -116,7 +117,7 @@ LoadPixel(name) {
     return weapon_num_pixels
 }
 
-; Pattern
+; Pattern load
 No_Pattern := {}
 
 Loop Files, %A_ScriptDir%\Pattern\*.txt, R
@@ -129,13 +130,11 @@ Loop Files, %A_ScriptDir%\Pattern\*.txt, R
 }
 
 ; Variable section 2 (Don't edit this)
-
 Zoom := 1.0/zoom_sens 
 Active_Pattern := No_Pattern
 ModIfier := 4/sens*Zoom
 
-; ---Suspend the script when mouse is showing---
-
+; Suspend the script when mouse is showing
 isCursorShown() {
 	StructSize := A_PtrSize + 16
 	VarSetCapacity(InfoStruct, StructSize)
@@ -157,7 +156,6 @@ Loop {
 
 
 ; Check weapons
-
 Check_Weapon(weapon_pixels)
 {
     target_color := 0xFFFFFF
@@ -172,6 +170,7 @@ Check_Weapon(weapon_pixels)
     return True
 }
 
+; Check Turbocharge
 Check_Turbocharger(turbocharger_pixels)
 {
     target_color := 0xFFFFFF
@@ -182,11 +181,12 @@ Check_Turbocharger(turbocharger_pixels)
     return false
 }
 
+; Detect weapons
 Detect_Weapon() {
 	Sleep 100
     AmmoType := 0
 	Current_Weapon := Default_Weapon
-    PixelGetColor, AmmoType1, WEAPON_1_PIXELS[1], WEAPON_1_PIXELS[2]
+    PixelGetColor, AmmoType1, WEAPON_1_PIXELS[1], WEAPON_1_PIXELS[2] 
     PixelGetColor, AmmoType2, WEAPON_2_PIXELS[1], WEAPON_2_PIXELS[2]
     If (AmmoType1 == Light_Weapon || AmmoType1 == Heavy_Weapon || AmmoType1 == Energy_Weapon || AmmoType1 == Supplydrop_Weapon) {
         AmmoType := AmmoType1
@@ -197,24 +197,24 @@ Detect_Weapon() {
     }
 	; Light
 	If (AmmoType == Light_Weapon) {
-		If (Check_Weapon(R99_PIXELS)) {
+		If (Check_Weapon(R301_PIXELS)) {
 			Global RapidMode := 0
-			Return R99_Weapon 
-		} Else If (Check_Weapon(R301_PIXELS)) {
+			Return R301_Weapon 
+		} Else If (Check_Weapon(R99_PIXELS)) {
 			Global RapidMode := 0
-			Return R301_Weapon
-		} Else If (Check_Weapon(RE45_PIXELS)) {
-			Global RapidMode := 0
-			Return RE45_Weapon
-		} Else If (Check_Weapon(P2020_PIXELS)) {
-			Global RapidMode := 1
-			Return P2020_Weapon
+			Return R99_Weapon
 		} Else If (Check_Weapon(CAR_PIXELS)) {
 			Global RapidMode := 0
 			Return CAR_Weapon
 		} Else If (Check_Weapon(Alternator_PIXELS)) {
 			Global RapidMode := 0
 			Return Alternator_Weapon
+		} Else If (Check_Weapon(RE45_PIXELS)) {
+			Global RapidMode := 0
+			Return RE45_Weapon
+		} Else If (Check_Weapon(P2020_PIXELS)) {
+			Global RapidMode := 1
+			Return P2020_Weapon
 		}
 	}
 	; Heavy
@@ -234,20 +234,16 @@ Detect_Weapon() {
 		} Else If (Check_Weapon(Prowler_PIXELS)) {
 			Global RapidMode := 1
 			Return Prowler_Weapon
-		} 
+		} Else 	If (Check_Weapon(Spitfire_PIXELS)) {
+			Global RapidMode := 0
+			Return Spitfire_Weapon
+		}
 	}
 	; Energy
 	Else If (AmmoType == Energy_Weapon) {
 		If (Check_Weapon(Lstar_PIXELS)) {
 			Global RapidMode := 0
 			Return Lstar_Weapon
-		} Else If (Check_Weapon(Devotion_PIXELS)) {
-			If (Check_Turbocharger(DEVOTION_TURBOCHARGER_PIXELS)) {
-				Global RapidMode := 0
-				Return DevotionTurbo_Weapon
-            }
-			Global RapidMode := 0
-			Return Devotion_Weapon
 		} Else If (Check_Weapon(Havoc_PIXELS)) {
 			If (Check_Turbocharger(Havoc_TURBOCHARGER_PIXELS)) {
 				Global RapidMode := 0
@@ -255,15 +251,18 @@ Detect_Weapon() {
 			}
 			Global RapidMode := 0
 			Return Havoc_Weapon
+		} Else If (Check_Weapon(Devotion_PIXELS)) {
+			If (Check_Turbocharger(DEVOTION_TURBOCHARGER_PIXELS)) {
+				Global RapidMode := 0
+				Return DevotionTurbo_Weapon
+            }
+			Global RapidMode := 0
+			Return Devotion_Weapon
 		}
 	} 
 	; Airdrop
 	Else If (AmmoType == Supplydrop_Weapon) {		
-		If (Check_Weapon(Spitfire_PIXELS)) {
-			Global RapidMode := 0
-			Return Spitfire_Weapon
-		}
-		Else If (Check_Weapon(Volt_PIXELS)) {
+		If (Check_Weapon(Volt_PIXELS)) {
 			Global RapidMode := 0
 			Return Volt_Weapon
 		}
@@ -272,8 +271,8 @@ Detect_Weapon() {
 	Return Default_Weapon
 }
 
+; Set weapons
 DetectAndSetWeapon() {
-    Sleep 100
     Current_Weapon := Detect_Weapon()
 	Active_Pattern := %Current_Weapon%_Pattern
 }
@@ -425,6 +424,11 @@ ExitSub:
 		MsgBox, % "Library unloaded"
 	}
 ExitApp
+
+~Home::
+	Pause
+	Suspend
+return
 
 ~End::
     ExitApp

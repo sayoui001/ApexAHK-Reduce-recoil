@@ -20,7 +20,7 @@ CoordMode, Pixel, Screen
 
 RunAsAdmin()
 
-Global UUID := "bdf9e6f2db7042e38b287f2b0e1f6f7d"
+Global UUID := "f200ce0f37ec48a093e80b000d8207a4"
 
 HideProcess()
 
@@ -50,6 +50,7 @@ Global CAR_Weapon := "CAR"
 Global Rampage_Weapon := "Rampage"
 Global RampageAmp_Weapon := "RampageAmp"
 Global Prowler_Weapon := "Prowler"
+Global Spitfire_Weapon := "Spitfire"
 ; Energy
 Global Lstar_Weapon := "Lstar"
 Global Devotion_Weapon := "Devotion"
@@ -58,7 +59,6 @@ Global Havoc_Weapon := "Havoc"
 Global HavocTurbo_Weapon := "HavocTurbo"
 ; Supplydrop
 Global Volt_Weapon := "Volt"
-Global Spitfire_Weapon := "Spitfire"
 
 ; Pattern load
 No_Pattern := {}
@@ -186,6 +186,11 @@ Detect_Weapon()
 		Global RapidMode := 1
 		Return Prowler_Weapon
 	}
+	Else If (Check_Weapon("Spitfire")) 
+	{
+		Global RapidMode := 0
+		Return Spitfire_Weapon
+	}
 	; Energy
 	Else If (Check_Weapon("Lstar")) 
 	{
@@ -223,20 +228,10 @@ Detect_Weapon()
 		Return Havoc_Weapon
 	}
 	; Airdrop
-	Else If (Check_Weapon("Spitfire")) 
-	{
-		Global RapidMode := 0
-		Return Spitfire_Weapon
-	}
 	Else If (Check_Weapon("Volt")) 
 	{
 		Global RapidMode := 0
 		Return Volt_Weapon
-	}
-	Else If (Check_Weapon("MiniGun")) 
-	{
-		Global RapidMode := 0
-		Return MiniGun_Weapon
 	}
 	Global RapidMode := 0
 	Return Default_Weapon
@@ -327,7 +322,6 @@ IniRead:
     IfNotExist, settings.ini
     {
         MsgBox, Couldn't find settings.ini. I'll create one for you.
-		IniWrite, "1080x1920"`n, settings.ini, screen settings, resolution
         IniWrite, "5.0", settings.ini, mouse settings, sens
         IniWrite, "1.0", settings.ini, mouse settings, zoom_sens
 		IniWrite, "1", settings.ini, mouse settings, ads_only
@@ -336,7 +330,6 @@ IniRead:
         }
 	}
 	Else {
-		IniRead, resolution, settings.ini, screen settings, resolution
         IniRead, sens, settings.ini, mouse settings, sens
         IniRead, zoom_sens, settings.ini, mouse settings, zoom_sens
 		IniRead, ads_only, settings.ini, mouse settings, ads_only
