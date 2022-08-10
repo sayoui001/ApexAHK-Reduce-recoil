@@ -43,21 +43,21 @@ Global R99_Weapon := "R99"
 Global P2020_Weapon := "P2020"
 Global RE45_Weapon := "RE45"
 Global Alternator_Weapon := "Alternator"
+Global Spitfire_Weapon := "Spitfire"
 ; Heavy
 Global Flatline_Weapon := "Flatline"
 Global Hemlok_Weapon := "Hemlok"
 Global CAR_Weapon := "CAR"
-Global Rampage_Weapon := "Rampage"
 Global Prowler_Weapon := "Prowler"
-Global Spitfire_Weapon := "Spitfire"
 ; Energy
 Global Lstar_Weapon := "Lstar"
 Global Devotion_Weapon := "Devotion"
 Global DevotionTurbo_Weapon := "DevotionTurbo"
 Global Havoc_Weapon := "Havoc"
 Global HavocTurbo_Weapon := "HavocTurbo"
-; Supplydrop
 Global Volt_Weapon := "Volt"
+; Supplydrop
+Global Rampage_Weapon := "Rampage"
 
 
 ; x, y pos for weapon1 and weapon 2
@@ -79,13 +79,12 @@ Global R301_PIXELS := LoadPixel("r301")
 Global RE45_PIXELS := LoadPixel("re45")
 Global P2020_PIXELS := LoadPixel("p2020")
 Global ALTERNATOR_PIXELS := LoadPixel("alternator")
+Global SPITFIRE_PIXELS := LoadPixel("spitfire")
 
 ; Heavy weapon
 Global FLATLINE_PIXELS := LoadPixel("flatline")
 Global HEMLOK_PIXELS := LoadPixel("hemlok")
 Global PROWLER_PIXELS := LoadPixel("prowler")
-Global RAMPAGE_PIXELS := LoadPixel("rampage")
-Global SPITFIRE_PIXELS := LoadPixel("spitfire")
 
 ; Special
 Global CAR_PIXELS := LoadPixel("car")
@@ -94,9 +93,10 @@ Global CAR_PIXELS := LoadPixel("car")
 Global LSTAR_PIXELS := LoadPixel("lstar")
 Global DEVOTION_PIXELS := LoadPixel("devotion")
 Global HAVOC_PIXELS := LoadPixel("havoc")
+Global VOLT_PIXELS := LoadPixel("volt")
 
 ; Supplydrop weapon
-Global VOLT_PIXELS := LoadPixel("volt")
+Global RAMPAGE_PIXELS := LoadPixel("rampage")
 
 ; Turbocharger
 Global HAVOC_TURBOCHARGER_PIXELS := LoadPixel("havoc_turbocharger")
@@ -215,6 +215,9 @@ Detect_Weapon() {
 		} Else If (Check_Weapon(P2020_PIXELS)) {
 			Global RapidMode := 1
 			Return P2020_Weapon
+		} Else 	If (Check_Weapon(Spitfire_PIXELS)) {
+			Global RapidMode := 0
+			Return Spitfire_Weapon
 		}
 	}
 	; Heavy
@@ -225,18 +228,12 @@ Detect_Weapon() {
 		} Else If (Check_Weapon(Flatline_PIXELS)) {
 			Global RapidMode := 0
 			Return Flatline_Weapon
-		} Else If (Check_Weapon(Rampage_PIXELS)) {
-			Global RapidMode := 0
-			Return Rampage_Weapon
 		} Else If (Check_Weapon(Hemlok_PIXELS)) {
 			Global RapidMode := 1
 			Return Hemlok_Weapon
 		} Else If (Check_Weapon(Prowler_PIXELS)) {
 			Global RapidMode := 1
 			Return Prowler_Weapon
-		} Else 	If (Check_Weapon(Spitfire_PIXELS)) {
-			Global RapidMode := 0
-			Return Spitfire_Weapon
 		}
 	}
 	; Energy
@@ -258,13 +255,16 @@ Detect_Weapon() {
             }
 			Global RapidMode := 0
 			Return Devotion_Weapon
+		} Else If (Check_Weapon(Volt_PIXELS)) {
+			Global RapidMode := 0
+			Return Volt_Weapon
 		}
 	} 
 	; Airdrop
 	Else If (AmmoType == Supplydrop_Weapon) {		
-		If (Check_Weapon(Volt_PIXELS)) {
+		If (Check_Weapon(Rampage_PIXELS)) {
 			Global RapidMode := 0
-			Return Volt_Weapon
+			Return Rampage_Weapon
 		}
 	}
 	Global RapidMode := 0
@@ -281,6 +281,7 @@ DetectAndSetWeapon() {
 ~2::
 ~B::
 ~R::
+~E::
 	DetectAndSetWeapon()
 Return
 
