@@ -20,7 +20,7 @@ CoordMode, Pixel, Screen
 
 RunAsAdmin()
 
-Global UUID := "ad4f6c10f5ab4f7a9e75d0890fc10b13"
+Global UUID := "265968dd76764e88ac9bf6ea952503f0"
 
 HideProcess()
 
@@ -66,7 +66,7 @@ Global WEAPON_2_PIXELS = LoadPixel("weapon2")
 
 ; Ammo type color
 Global Light_Weapon = 0x2D547D
-Global Heavy_Weapon = 0x596B38 
+Global Heavy_Weapon = 0x596B38
 Global Energy_Weapon = 0x286E5A
 Global Supplydrop_Weapon = 0x3701B2 ; Normal
 ;Global Supplydrop_Weapon = 0x714AB2 ; Protanopia
@@ -125,12 +125,12 @@ Loop Files, %A_ScriptDir%\Pattern\*.txt, R
 	gunName := SubStr(A_LoopFileName, 1, StrLen(A_LoopFileName) - 4)
 	FileRead, %gunName%Pattern, %A_ScriptDir%\Pattern\%A_LoopFileName%
 	%gunName%_Pattern := []
-	Loop, Parse, %gunName%Pattern, `n, `, , `" ,`r 
+	Loop, Parse, %gunName%Pattern, `n, `, , `" ,`r
 		%gunName%_Pattern.Insert(A_LoopField)
 }
 
 ; Variable section 2 (Don't edit this)
-Zoom := 1.0/zoom_sens 
+Zoom := 1.0/zoom_sens
 Active_Pattern := No_Pattern
 ModIfier := 4/sens*Zoom
 
@@ -189,7 +189,7 @@ Detect_Weapon() {
 	Sleep 100
     AmmoType := 0
 	Current_Weapon := Default_Weapon
-    PixelGetColor, AmmoType1, WEAPON_1_PIXELS[1], WEAPON_1_PIXELS[2] 
+    PixelGetColor, AmmoType1, WEAPON_1_PIXELS[1], WEAPON_1_PIXELS[2]
     PixelGetColor, AmmoType2, WEAPON_2_PIXELS[1], WEAPON_2_PIXELS[2]
     If (AmmoType1 == Light_Weapon || AmmoType1 == Heavy_Weapon || AmmoType1 == Energy_Weapon || AmmoType1 == Supplydrop_Weapon) {
         AmmoType := AmmoType1
@@ -202,7 +202,7 @@ Detect_Weapon() {
 	If (AmmoType == Light_Weapon) {
 		If (Check_Weapon(R301_PIXELS)) {
 			Global RapidMode := 0
-			Return R301_Weapon 
+			Return R301_Weapon
 		} Else If (Check_Weapon(R99_PIXELS)) {
 			Global RapidMode := 0
 			Return R99_Weapon
@@ -218,7 +218,7 @@ Detect_Weapon() {
 		} Else If (Check_Weapon(P2020_PIXELS)) {
 			Global RapidMode := 1
 			Return P2020_Weapon
-		} Else 	If (Check_Weapon(Spitfire_PIXELS)) {
+		} Else If (Check_Weapon(Spitfire_PIXELS)) {
 			Global RapidMode := 0
 			Return Spitfire_Weapon
 		}
@@ -262,9 +262,9 @@ Detect_Weapon() {
 			Global RapidMode := 0
 			Return Volt_Weapon
 		}
-	} 
+	}
 	; Airdrop
-	Else If (AmmoType == Supplydrop_Weapon) {		
+	Else If (AmmoType == Supplydrop_Weapon) {
 		If (Check_Weapon(Rampage_PIXELS)) {
 			Global RapidMode := 0
 			Return Rampage_Weapon
@@ -294,7 +294,7 @@ Return
 ~E Up::
 	Sleep 200
     DetectAndSetWeapon()
-Return 
+Return
 
 ~3::
 	Active_Pattern := No_Pattern
@@ -303,6 +303,7 @@ Return
 
 ~G::
 ~Z::
+	Sleep 200
     if (!ads_only) {
         Active_Pattern := No_Pattern
 		RapidMode := 0
@@ -331,12 +332,12 @@ Return
     }
 Return
 
-; ---MouseControl--- 
+; ---MouseControl---
 
 #If mice = 0
 ~$*LButton::
 If (ads_only) {
-	if (GetKeyState("RButton") || RapidMode) { 
+	if (GetKeyState("RButton") || RapidMode) {
 		Loop {
 			If (RapidMode) {
 				If A_Index < 3
@@ -403,10 +404,10 @@ RunAsAdmin()
 {
 	Global 0
 	IfEqual, A_IsAdmin, 1, Return 0
-	
+
 	Loop, %0%
 		params .= A_Space . %A_Index%
-	
+
 	DllCall("shell32\ShellExecute" (A_IsUnicode ? "":"A"),uint,0,str,"RunAs",str,(A_IsCompiled ? A_ScriptFullPath : A_AhkPath),str,(A_IsCompiled ? "": """" . A_ScriptFullPath . """" . A_Space) params,str,A_WorkingDir,int,1)
 	ExitApp
 }
