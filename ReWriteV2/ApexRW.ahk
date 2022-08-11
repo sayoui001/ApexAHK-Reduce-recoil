@@ -135,7 +135,7 @@ Active_Pattern := No_Pattern
 ModIfier := 4/sens*Zoom
 
 ; On/Off Setting (Off : 0, On : 1)
-Global On_Off := 0
+Global On_Off := 1
 
 ; Suspend the script when mouse is showing
 isCursorShown() {
