@@ -134,6 +134,9 @@ Zoom := 1.0/zoom_sens
 Active_Pattern := No_Pattern
 ModIfier := 4/sens*Zoom
 
+; On/Off Setting (Off : 0, On : 1)
+Global On_Off := 0
+
 ; Suspend the script when mouse is showing
 isCursorShown() {
 	StructSize := A_PtrSize + 16
@@ -273,8 +276,11 @@ Detect_Weapon() {
 
 ; Set weapons
 DetectAndSetWeapon() {
-    Current_Weapon := Detect_Weapon()
+    if (On_Off) {
+	Sleep 100
+	Current_Weapon := Detect_Weapon()
 	Active_Pattern := %Current_Weapon%_Pattern
+    }
 }
 
 ~1::
@@ -302,6 +308,28 @@ Return
 		RapidMode := 0
     }
 return
+
+~F3::
+    On_Off := 1
+    DetectAndSetWeapon()
+Return
+
+~F4::
+    On_Off := 0
+    Active_Pattern := No_Pattern
+    RapidMode := 0
+Return
+
+~F11::
+    On_Off := !On_Off
+    if (On_Off) {
+	DetectAndSetWeapon()
+    }
+    Else {
+	Active_Pattern := No_Pattern
+	RapidMode := 0
+    }
+Return
 
 ; ---MouseControl--- 
 
