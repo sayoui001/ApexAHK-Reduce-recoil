@@ -245,12 +245,12 @@ Detect_Weapon() {
 		If (Check_Weapon(CAR_PIXELS)) {
 			Global RapidMode := 0
 			Return CAR_Weapon
+		} Else If (Check_Weapon(Rampage_PIXELS)) {
+			Global RapidMode := 0
+			Return Rampage_Weapon
 		} Else If (Check_Weapon(Flatline_PIXELS)) {
 			Global RapidMode := 0
 			Return Flatline_Weapon
-		} Else If (Check_Weapon(Hemlok_PIXELS)) {
-			Global RapidMode := 1
-			Return Hemlok_Weapon
 		} Else If (Check_Weapon(Prowler_PIXELS)) {
 			Global RapidMode := 1
 			Return Prowler_Weapon
@@ -258,9 +258,9 @@ Detect_Weapon() {
 	}
 	; Energy
 	Else If (AmmoType == Energy_Weapon) {
-		If (Check_Weapon(Lstar_PIXELS)) {
+		If (Check_Weapon(Volt_PIXELS)) {
 			Global RapidMode := 0
-			Return Lstar_Weapon
+			Return Volt_Weapon
 		} Else If (Check_Weapon(Havoc_PIXELS)) {
 			If (Check_Turbocharger(Havoc_TURBOCHARGER_PIXELS)) {
 				Global RapidMode := 0
@@ -282,17 +282,16 @@ Detect_Weapon() {
 			}
 			Global RapidMode := 0
 			Return Nemesis_Weapon
-		} Else If (Check_Weapon(Volt_PIXELS)) {
-			Global RapidMode := 0
-			Return Volt_Weapon
-		}
+
 	}
 	; Airdrop
 	Else If (AmmoType == Supplydrop_Weapon) {
-		If (Check_Weapon(Rampage_PIXELS)) {
+		If (Check_Weapon(Hemlok_PIXELS)) {
+			Global RapidMode := 1
+			Return Hemlok_Weapon
+		} Else If (Check_Weapon(Lstar_PIXELS)) {
 			Global RapidMode := 0
-			Return Rampage_Weapon
-		}
+			Return Lstar_Weapon
 	}
 	Global RapidMode := 0
 	Return Default_Weapon
