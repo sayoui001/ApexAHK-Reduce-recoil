@@ -28,7 +28,7 @@ HideProcess()
 
 GoSub, IniRead
 
-; Script version ReWrite V 2 S13 Update
+; Script version ReWrite V 2 S17 Update
 
 ; Variable section
 Global Current_Weapon := Default_Weapon
@@ -46,18 +46,20 @@ Global Alternator_Weapon := "Alternator"
 Global Spitfire_Weapon := "Spitfire"
 ; Heavy
 Global Flatline_Weapon := "Flatline"
-Global Hemlok_Weapon := "Hemlok"
 Global CAR_Weapon := "CAR"
+Global Rampage_Weapon := "Rampage"
 Global Prowler_Weapon := "Prowler"
 ; Energy
-Global Lstar_Weapon := "Lstar"
 Global Devotion_Weapon := "Devotion"
 Global DevotionTurbo_Weapon := "DevotionTurbo"
 Global Havoc_Weapon := "Havoc"
 Global HavocTurbo_Weapon := "HavocTurbo"
 Global Volt_Weapon := "Volt"
+Global Nemesis_Weapon := "Nemesis"
+Global NemesisCharged_Weapon := "NemesisCharged"
 ; Supplydrop
-Global Rampage_Weapon := "Rampage"
+Global Lstar_Weapon := "Lstar"
+Global Hemlok_Weapon := "Hemlok"
 
 
 ; x, y pos for weapon1 and weapon 2
@@ -83,24 +85,28 @@ Global SPITFIRE_PIXELS := LoadPixel("spitfire")
 
 ; Heavy weapon
 Global FLATLINE_PIXELS := LoadPixel("flatline")
-Global HEMLOK_PIXELS := LoadPixel("hemlok")
+Global RAMPAGE_PIXELS := LoadPixel("rampage")
 Global PROWLER_PIXELS := LoadPixel("prowler")
 
 ; Special
 Global CAR_PIXELS := LoadPixel("car")
 
 ; Energy weapon
-Global LSTAR_PIXELS := LoadPixel("lstar")
 Global DEVOTION_PIXELS := LoadPixel("devotion")
 Global HAVOC_PIXELS := LoadPixel("havoc")
 Global VOLT_PIXELS := LoadPixel("volt")
+Global NEMESIS_PIXELS := LoadPixel("nemesis")
 
 ; Supplydrop weapon
-Global RAMPAGE_PIXELS := LoadPixel("rampage")
+Global LSTAR_PIXELS := LoadPixel("lstar")
+Global HEMLOK_PIXELS := LoadPixel("hemlok")
 
 ; Turbocharger
 Global HAVOC_TURBOCHARGER_PIXELS := LoadPixel("havoc_turbocharger")
 Global DEVOTION_TURBOCHARGER_PIXELS := LoadPixel("devotion_turbocharger")
+
+; NemesisCharged
+Global NEMESIS_CHARGED_PIXELS := LoadPixel("nemesis_charged")
 
 ; Weapon pixel load
 LoadPixel(name) {
@@ -184,6 +190,17 @@ Check_Turbocharger(turbocharger_pixels)
     return false
 }
 
+; Check NemesisCharged
+Check_NemesisCharged(nemesis_charged_pixels)
+{
+    target_color := 0xD6BD62
+    PixelGetColor, check_point_color, nemesis_charged_pixels[1], nemesis_charged_pixels[2]
+    if (check_point_color == target_color) {
+        return true
+    }
+    return false
+}
+
 ; Detect weapons
 Detect_Weapon() {
 	Sleep 100
@@ -228,12 +245,12 @@ Detect_Weapon() {
 		If (Check_Weapon(CAR_PIXELS)) {
 			Global RapidMode := 0
 			Return CAR_Weapon
+		} Else If (Check_Weapon(Rampage_PIXELS)) {
+			Global RapidMode := 0
+			Return Rampage_Weapon
 		} Else If (Check_Weapon(Flatline_PIXELS)) {
 			Global RapidMode := 0
 			Return Flatline_Weapon
-		} Else If (Check_Weapon(Hemlok_PIXELS)) {
-			Global RapidMode := 1
-			Return Hemlok_Weapon
 		} Else If (Check_Weapon(Prowler_PIXELS)) {
 			Global RapidMode := 1
 			Return Prowler_Weapon
@@ -241,9 +258,9 @@ Detect_Weapon() {
 	}
 	; Energy
 	Else If (AmmoType == Energy_Weapon) {
-		If (Check_Weapon(Lstar_PIXELS)) {
+		If (Check_Weapon(Volt_PIXELS)) {
 			Global RapidMode := 0
-			Return Lstar_Weapon
+			Return Volt_Weapon
 		} Else If (Check_Weapon(Havoc_PIXELS)) {
 			If (Check_Turbocharger(Havoc_TURBOCHARGER_PIXELS)) {
 				Global RapidMode := 0
@@ -258,17 +275,23 @@ Detect_Weapon() {
             }
 			Global RapidMode := 0
 			Return Devotion_Weapon
-		} Else If (Check_Weapon(Volt_PIXELS)) {
+	        } Else if (CheckWeapon(Nemesis_PIXELS)) {
+			If (Check_NemesisCharged(Nemesis_CHARGED_PIXELS)) {
+				Global RapidMode := 0
+				Return NemesisCharged_Weapon
+			}
 			Global RapidMode := 0
-			Return Volt_Weapon
-		}
+			Return Nemesis_Weapon
+
 	}
 	; Airdrop
 	Else If (AmmoType == Supplydrop_Weapon) {
-		If (Check_Weapon(Rampage_PIXELS)) {
+		If (Check_Weapon(Hemlok_PIXELS)) {
+			Global RapidMode := 1
+			Return Hemlok_Weapon
+		} Else If (Check_Weapon(Lstar_PIXELS)) {
 			Global RapidMode := 0
-			Return Rampage_Weapon
-		}
+			Return Lstar_Weapon
 	}
 	Global RapidMode := 0
 	Return Default_Weapon
